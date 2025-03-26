@@ -4,7 +4,7 @@ import { ThemeContext } from '../App';
 import './LoginPage.css';
 
 const LoginPage = () => {
-  const [email, setEmail] = useState('');
+  const [username, setUsername] = useState(''); // Changed from email to username
   const [password, setPassword] = useState('');
   const [errors, setErrors] = useState({});
   const [isLoading, setIsLoading] = useState(false);
@@ -13,13 +13,20 @@ const LoginPage = () => {
 
   const validateForm = () => {
     const newErrors = {};
-    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
 
-    if (!email) newErrors.email = 'Email is required';
-    else if (!emailRegex.test(email)) newErrors.email = 'Invalid email format';
+    // Username validation
+    if (!username) {
+      newErrors.username = 'Username is required';
+    } else if (username !== 'admin') {
+      newErrors.username = 'Invalid username';
+    }
 
-    if (!password) newErrors.password = 'Password is required';
-    else if (password.length < 6) newErrors.password = 'Password must be at least 6 characters';
+    // Password validation
+    if (!password) {
+      newErrors.password = 'Password is required';
+    } else if (password !== '123456') {
+      newErrors.password = 'Invalid password';
+    }
 
     setErrors(newErrors);
     return Object.keys(newErrors).length === 0;
@@ -28,13 +35,13 @@ const LoginPage = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     if (!validateForm()) return;
-
+  
     setIsLoading(true);
     try {
       await new Promise(resolve => setTimeout(resolve, 1000));
-      navigate('/dashboard');
+      navigate('/'); 
     } catch (error) {
-      setErrors({ general: 'Invalid credentials' });
+      setErrors({ general: 'Authentication failed' });
     } finally {
       setIsLoading(false);
     }
@@ -51,16 +58,16 @@ const LoginPage = () => {
           )}
 
           <div className="form-group">
-            <label htmlFor="email">Email</label>
+            <label htmlFor="username">Username</label>
             <input
-              type="email"
-              id="email"
-              value={email}
-              onChange={(e) => setEmail(e.target.value)}
-              className={errors.email ? 'input-error' : ''}
-              placeholder="admin@example.com"
+              type="text" // Changed from email to text
+              id="username"
+              value={username}
+              onChange={(e) => setUsername(e.target.value)}
+              className={errors.username ? 'input-error' : ''}
+              placeholder="Enter username"
             />
-            {errors.email && <span className="error-text">{errors.email}</span>}
+            {errors.username && <span className="error-text">{errors.username}</span>}
           </div>
 
           <div className="form-group">

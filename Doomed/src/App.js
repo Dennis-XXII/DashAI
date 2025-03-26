@@ -39,7 +39,12 @@ function App() {
       <Router>
         <Routes>
           <Route path="/login" element={<LoginPage />} />
-          <Route path="/*" element={<MainLayout />} />
+          <Route path="/" element={<MainLayout />}>
+            <Route index element={<OverviewPage />} />
+            {CommandPages.map(({ path, element }, i) => (
+              <Route key={i} path={path} element={element} />
+            ))}
+          </Route>
           <Route path="*" element={<Navigate to="/login" replace />} />
         </Routes>
       </Router>

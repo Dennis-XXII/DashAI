@@ -179,7 +179,6 @@ const OverviewPage = () => {
               <div>
               <button className="generate-pdf-btn" onClick={() => generatePdf({
                 chartSelectors: ' .grid-container, .pie-chart-card, .line-chart-card',
-                aiInsightsText: overviewData.ai_response.replace(/^"|"$/g, "").replace(/\\n/g, "\n"),
                 fullAIInsightsText: overviewData.ai_full_insight.replace(/^"|"$/g, "").replace(/\\n/g, "\n"),
                 fileName: "Overview Report.pdf"
                   })}>

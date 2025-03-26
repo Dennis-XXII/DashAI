@@ -171,7 +171,6 @@ export const NewClientsPage = () => {
                                 className="generate-pdf-btn" 
                                 onClick={() => generatePdf({
                                     chartSelectors: '.single-total-chart, .total-chart',
-                                    aiInsightsText: aiInsights.replace(/^"|"$/g, "").replace(/\\n/g, "\n") || "No AI insights available.",
                                     fullAIInsightsText: fullAIInsights.replace(/^"|"$/g, "").replace(/\\n/g, "\n") || "No AI insights available.",
                                     fileName: "New Clients Report.pdf"
                                 })}

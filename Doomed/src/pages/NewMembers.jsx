@@ -211,7 +211,6 @@ export const NewMembersPage = () => {
                             <p>{aiInsights.replace(/\\n/g, "\n")}</p>
                             <button className="generate-pdf-btn" onClick={() => generatePdf({
                                 chartSelectors: '.single-total-chart, .total-chart',
-                                aiInsightsText: aiInsights.replace(/^"|"$/g, "").replace(/\\n/g, "\n") || "No AI insights available.",
                                 fullAIInsightsText: fullAIInsights.replace(/^"|"$/g, "").replace(/\\n/g, "\n") || "No AI insights available.",
                                 fileName: "New Members Report.pdf"
                             })}>
@@ -224,7 +223,6 @@ export const NewMembersPage = () => {
                         <p className="error-message">{error}</p>
                     ) : (
                         <>
-                            {/* First Grid - Pie Charts Only */}
                             <div className="total-clients-grid">
                                 <div className="total-chart">
                                     <h3 className="total-chart-title">New Membership Tier Distribution</h3>

@@ -53,20 +53,15 @@ export const Navbar = () => {
     
     // Handle overview page
     if (currentPath === "/") return ["Overview"];
-  
-    // Check all menu items and subitems
     for (const section of menuItems) {
       // Check subitems first
       if (section.subItems) {
         const foundSubItem = section.subItems.find(item => item.path === currentPath);
         if (foundSubItem) return [section.title, foundSubItem.title];
       }
-      
-      // Check if it's a main section path (optional - add if you have section pages)
-      // if (section.path === currentPath) return [section.title];
     }
   
-    // Fallback for unknown paths
+
     const pathSegments = currentPath.split('/').filter(Boolean);
     return pathSegments.map(segment => 
       segment.replace(/-/g, ' ').replace(/\b\w/g, l => l.toUpperCase())

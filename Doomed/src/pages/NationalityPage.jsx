@@ -139,7 +139,6 @@ const { barChartData, bubbleChartData, doughnutChartData } = useMemo(() => {
                                 className="generate-pdf-btn" 
                                 onClick={() => generatePdf({
                                     chartSelectors: '.total-chart, .single-total-chart',
-                                    aiInsightsText: aiInsights.replace(/^"|"$/g, "").replace(/\\n/g, "\n"),
                                     fullAIInsightsText: fullAIInsights.replace(/^"|"$/g, "").replace(/\\n/g, "\n"),
                                     fileName: "Nationality_Report.pdf"
                                 })}

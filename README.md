@@ -1,2 +1,2 @@
-# DashAI
-CimSO ERP dashboard - hackathon 2025
+# CIMSO-Dashboard
+the next person who joins will get touched

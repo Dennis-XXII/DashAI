@@ -91,7 +91,7 @@ export const TotalClientsPage = () => {
             const [year, month] = entry.date.split('-');
             return new Date(year, month - 1).toLocaleDateString('en-US', {
                 month: 'short',
-                year: '2-digit'
+                year: 'numeric'
             });
         }),
         datasets: [

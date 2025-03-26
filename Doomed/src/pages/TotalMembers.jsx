@@ -15,7 +15,7 @@ export const TotalMembersPage = () => {
     const { darkMode } = useContext(ThemeContext);
     const generatePdf = usePdfGenerator();
 
-    // Common chart options function
+
     const createChartOptions = (yTitle) => ({
         responsive: true,
         maintainAspectRatio: false,
@@ -70,17 +70,17 @@ export const TotalMembersPage = () => {
         fetchTotalMembersData();
     }, []);
 
-    // Process membership data for charts
+
     const membershipCharts = useMemo(() => {
         if (!totalMembersData) return null;
         
-        // Tier distribution
+
         const tierCounts = totalMembersData.reduce((acc, member) => {
             acc[member.tier] = (acc[member.tier] || 0) + 1;
             return acc;
         }, {});
         
-        // Active vs Inactive by tier
+
         const statusByTier = totalMembersData.reduce((acc, member) => {
             if (!acc[member.tier]) {
                 acc[member.tier] = { Active: 0, Inactive: 0 };
@@ -89,7 +89,7 @@ export const TotalMembersPage = () => {
             return acc;
         }, {});
         
-        // Expiration analysis (only for active members)
+
         const activeMembers = totalMembersData.filter(m => m.status === 'Active' && m.expiration_date);
         const expirationRanges = activeMembers.reduce((acc, member) => {
             const expDate = new Date(member.expiration_date);
@@ -104,12 +104,12 @@ export const TotalMembersPage = () => {
             return acc;
         }, { '< 3 months': 0, '3-6 months': 0, '6-12 months': 0, '> 12 months': 0 });
         
-        // Tier duration analysis
+
         const tierDurations = totalMembersData.reduce((acc, member) => {
             if (member.expiration_date) {
                 const start = new Date(member.start_date);
                 const end = new Date(member.expiration_date);
-                const duration = (end - start) / (1000 * 60 * 60 * 24); // in days
+                const duration = (end - start) / (1000 * 60 * 60 * 24); 
                 
                 if (!acc[member.tier]) {
                     acc[member.tier] = { sum: 0, count: 0 };
@@ -126,7 +126,6 @@ export const TotalMembersPage = () => {
         }));
         
         return {
-            // 1. Membership Tier Distribution
             tierDistribution: {
                 labels: Object.keys(tierCounts),
                 datasets: [{
@@ -137,7 +136,7 @@ export const TotalMembersPage = () => {
                 }]
             },
             
-            // 2. Active vs Inactive Members
+
             statusByTier: {
                 labels: Object.keys(statusByTier),
                 datasets: [
@@ -154,7 +153,7 @@ export const TotalMembersPage = () => {
                 ]
             },
             
-            // 3. Membership Expiration Analysis
+
             expirationAnalysis: {
                 labels: Object.keys(expirationRanges),
                 datasets: [{
@@ -168,7 +167,7 @@ export const TotalMembersPage = () => {
                 }]
             },
             
-            // 4. Enhanced Tier Duration Analysis (Radar)
+
             tierDuration: {
                 labels: avgDurations.map(d => d.tier),
                 datasets: [{
@@ -223,7 +222,6 @@ export const TotalMembersPage = () => {
                         <p className="error-message">{error}</p>
                     ) : (
                         <>
-                            {/* First Grid - Pie Charts Only */}
                             <div className="total-clients-grid">
                                 <div className="total-chart">
                                     <h3 className="total-chart-title">Membership Tier Distribution</h3>
@@ -256,7 +254,6 @@ export const TotalMembersPage = () => {
                                 </div>
                             </div>
 
-                            {/* Second Grid - Other Charts */}
                             <div className="total-clients-grid">
                                 <div className="total-chart">
                                     <h3 className="total-chart-title">Active vs Inactive Members</h3>

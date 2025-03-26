@@ -4,7 +4,6 @@ import { getTopSpendersData } from "../services/api";
 import { ThemeContext } from "../App";
 
 const TopSpendersBarChart = ({ spenders, darkMode }) => {
-    // Dark mode color configurations
     const chartColors = darkMode ? {
         background: 'rgba(100, 216, 192, 0.6)',
         border: '#64D8C0',

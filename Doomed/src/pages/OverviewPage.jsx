@@ -22,11 +22,8 @@ const OverviewPage = () => {
   useEffect(() => {
     const fetchData = async () => {
       try {
-        // Fetch overview data
         const overviewResponse = await getOverviewData();
         setOverviewData(overviewResponse);
-        
-        // Fetch growth data separately
         const growthResponse = await getGrowthData();
         setGrowthData(growthResponse.response);
         

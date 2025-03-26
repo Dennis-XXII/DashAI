@@ -17,12 +17,12 @@ const menuItems = [
       subItems: [
         { title: "Total Clients", path: "/command1" },
         { title: "New Clients", path: "/command2" },
-        { title: "Nationality Breakdown", path: "/command7" }
       ]
     },
     {
       title: "Memberships",
       subItems: [
+        { title: "Nationality Breakdown", path: "/command7" },
         { title: "Total Memberships", path: "/command3" },
         { title: "New Memberships", path: "/command4" },
       ]

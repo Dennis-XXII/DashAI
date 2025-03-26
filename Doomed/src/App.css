@@ -174,7 +174,6 @@
   background-color: var(--card-color);
 }
 
-/* Pie Chart Cards Container */
 .pie-chart-grid {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
@@ -188,7 +187,6 @@
   padding: 20px;
 }
 
-/* Individual Pie Chart Card */
 .pie-chart-card {
   background: var(--card-color);
   padding: 10px;
@@ -204,7 +202,7 @@
   transform: scale(1.03);
 }
 
-/* Chart Title */
+
 .pie-chart-card h3 {
   font-size: 18px;
   font-weight: 600;
@@ -213,7 +211,7 @@
   text-align: center;
 }
 
-/* Chart Container */
+
 .pie-chart-container {
   position: relative;
   width: 100%;
@@ -222,7 +220,7 @@
   margin: auto;
 }
 
-/* Canvas Wrapper */
+
 .canvas-container {
   position: relative;
   width: 100%;

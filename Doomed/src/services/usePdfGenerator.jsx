@@ -1,4 +1,4 @@
-// components/PdfGenerator.jsx
+
 import { jsPDF } from 'jspdf';
 import html2canvas from 'html2canvas';
 import { useCallback } from 'react';
@@ -20,7 +20,6 @@ export const usePdfGenerator = () => {
     const pageHeight = doc.internal.pageSize.getHeight();
     let yPosition = 20;
 
-    // Get charts using provided selectors
     const chartContainers = Array.from(document.querySelectorAll(chartSelectors));
 
     for (let i = 0; i < chartContainers.length; i++) {
@@ -35,22 +34,21 @@ export const usePdfGenerator = () => {
       const canvas = await html2canvas(container);
       const imgHeight = (canvas.height * chartWidth) / canvas.width;
 
-      // Add title
+
       doc.setFontSize(14);
       doc.setTextColor(primaryColor);
       doc.text(title, pageWidth / 2, yPosition, { align: 'center' });
       yPosition += 10;
 
-      // Add chart
+
       const imgData = canvas.toDataURL('image/png');
       const xPosition = (pageWidth - chartWidth) / 2;
       doc.addImage(imgData, 'PNG', xPosition, yPosition, chartWidth, imgHeight);
       yPosition += imgHeight + verticalSpacing;
     }
 
-    // Add AI Insights
+
     if (aiInsightsText || fullAIInsightsText) {
-      // Add AI Insights section
       if (aiInsightsText) {
         doc.addPage();
         doc.setFontSize(12);
@@ -62,14 +60,14 @@ export const usePdfGenerator = () => {
         doc.text(splitSummary, 20, 35, { align: 'left' });
       }
     
-      // Process Detailed AI Report
+
       if (fullAIInsightsText) {
         const rawText = fullAIInsightsText
           .replace(/\\n/g, '\n')
           .replace(/^"|"$/g, '')
           .split('\n');
     
-        // Merge lines with their subsequent content
+
         const processedLines = [];
         let buffer = '';
         
@@ -111,28 +109,28 @@ export const usePdfGenerator = () => {
           const hasColon = line.includes(':') && !line.startsWith(' ');
     
           if (isMainSection) {
-            // Main section styling
+
             doc.setFontSize(14);
             doc.setTextColor(primaryColor);
             doc.setFont(undefined, 'bold');
             doc.text(line, 20, yPos);
             yPos += lineHeight * 2;
           } else if (hasColon) {
-            // Subheading with content
+
             const colonIndex = line.indexOf(':');
             const prefix = line.substring(0, colonIndex + 1);
             const content = line.substring(colonIndex + 1).trim();
     
-            // Calculate prefix width
+
             doc.setFontSize(12);
             const prefixWidth = doc.getTextWidth(prefix);
     
-            // Draw prefix
+
             doc.setTextColor('#444');
             doc.setFont(undefined, 'bold');
             doc.text(prefix, 20, yPos);
     
-            // Draw content
+
             doc.setFontSize(11);
             doc.setTextColor('#666');
             doc.setFont(undefined, 'normal');
@@ -148,7 +146,7 @@ export const usePdfGenerator = () => {
               yPos += lineHeight;
             });
           } else {
-            // Regular text
+
             doc.setFontSize(11);
             doc.setTextColor('#666');
             const lines = doc.splitTextToSize(line, pageWidth - 40);
@@ -158,7 +156,7 @@ export const usePdfGenerator = () => {
             });
           }
           
-          yPos += lineHeight / 2; // Add spacing between paragraphs
+          yPos += lineHeight / 2; 
         });
       }
     }

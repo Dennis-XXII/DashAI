@@ -45,7 +45,6 @@ export const NationalityPage = () => {
         );
       };
 
-    // Inside your useMemo data processing
 const { barChartData, bubbleChartData, doughnutChartData } = useMemo(() => {
     if (!nationalityData) return {};
     
@@ -88,7 +87,6 @@ const { barChartData, bubbleChartData, doughnutChartData } = useMemo(() => {
     };
 }, [nationalityData, darkMode]);
 
-    // Common chart options
     const chartOptions = (yTitle) => ({
         responsive: true,
         maintainAspectRatio: false,

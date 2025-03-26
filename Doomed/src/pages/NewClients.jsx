@@ -31,13 +31,11 @@ export const NewClientsPage = () => {
         fetchClientsData();
     }, []);
 
-    // Process nationality distribution data
     const nationalityData = clientsData?.reduce((acc, client) => {
         acc[client.nationality] = (acc[client.nationality] || 0) + 1;
         return acc;
     }, {});
 
-    // Process age distribution data
     const ageRanges = { '20-29': 0, '30-39': 0, '40-49': 0, '50-59': 0, '60+': 0 };
     clientsData?.forEach(client => {
         const age = client.age;
@@ -48,14 +46,12 @@ export const NewClientsPage = () => {
         else ageRanges['60+']++;
     });
 
-    // Process registration dates
     const dateCounts = clientsData?.reduce((acc, client) => {
         const date = client.created_date;
         acc[date] = (acc[date] || 0) + 1;
         return acc;
     }, {});
 
-    // Common chart options
     const createChartOptions = (yTitle) => ({
         responsive: true,
         maintainAspectRatio: false,
@@ -95,7 +91,6 @@ export const NewClientsPage = () => {
         }
     });
 
-    // Chart 1: Nationality Distribution
     const nationalityChart = {
         labels: Object.keys(nationalityData || {}),
         datasets: [{
@@ -121,7 +116,6 @@ export const NewClientsPage = () => {
         }]
     };
 
-    // Chart 2: Age Distribution
     const ageChart = {
         labels: Object.keys(ageRanges),
         datasets: [{
@@ -135,7 +129,6 @@ export const NewClientsPage = () => {
         }]
     };
 
-    // Chart 3: Registration Timeline
     const registrationChart = {
         labels: Object.keys(dateCounts || {}).sort(),
         datasets: [{

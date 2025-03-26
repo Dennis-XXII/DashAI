@@ -1,4 +1,4 @@
-/* Sidebar styles */
+
 .sidebar {
   width: 200px;
   min-width: 200px;
@@ -101,7 +101,7 @@
 }
 
 .chevron path {
-  fill: currentColor; /* Inherits color from parent */
+  fill: currentColor;
 }
 
 
@@ -137,7 +137,6 @@
   color: var(--active-color);
 }
 
-/* Fix transition property */
 .menu-button,
 .menu-header,
 .submenu-item {

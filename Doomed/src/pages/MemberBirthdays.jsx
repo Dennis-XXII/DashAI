@@ -83,15 +83,12 @@ export const UpcomingBirthdayPage = () => {
                 <div className="card ai-card"></div>
             </div>
 
-            {/* ✅ AI Insights Section */}
             {showAIInsights && (
                 <div className="ai-insights">
                     <h2>AI Insights</h2>
                     <p>{aiInsights.replace(/^"|"$/g, "").replace(/\\n/g, "\n")}</p>
                 </div>
             )}
-
-            {/* ✅ Show Loading, Error, or Table */}
             {error ? (
                 <p>{error}</p>
             ) : (

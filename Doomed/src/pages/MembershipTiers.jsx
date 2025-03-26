@@ -12,10 +12,9 @@ export const MembershipTiersPage = () => {
   const [aiInsights, setAIInsights] = useState("");
   const { darkMode } = useContext(ThemeContext);
 
-  // Dark mode color configurations
   const chartColors = darkMode
-    ? ["#FF6384", "#36A2EB", "#FFCE56", "#4BC0C0", "#9966FF"] // Brighter colors for dark mode
-    : ["#FF6384", "#36A2EB", "#FFCE56", "#4BC0C0", "#9966FF"]; // Original colors
+    ? ["#FF6384", "#36A2EB", "#FFCE56", "#4BC0C0", "#9966FF"]
+    : ["#FF6384", "#36A2EB", "#FFCE56", "#4BC0C0", "#9966FF"];
 
   useEffect(() => {
     const fetchData = async () => {

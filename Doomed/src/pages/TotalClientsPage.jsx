@@ -40,14 +40,12 @@ export const TotalClientsPage = () => {
         growthData[index-1].total_customers * 100
     ) || []);
 
-    // Forecast data (simple linear extrapolation)
     const forecastData = growthData?.length >= 3 ? [
         growthData[growthData.length-1].total_customers * 1.15,
         growthData[growthData.length-1].total_customers * 1.30,
         growthData[growthData.length-1].total_customers * 1.45
     ] : [];
 
-    // Common chart options
     const createChartOptions = (yTitle) => ({
         responsive: true,
         maintainAspectRatio: false,
@@ -87,7 +85,7 @@ export const TotalClientsPage = () => {
         }
     });
 
-    // Chart 1: Main Growth Line Chart
+
     const mainGrowthChart = {
         labels: growthData?.map(entry => {
             const [year, month] = entry.date.split('-');
@@ -108,22 +106,21 @@ export const TotalClientsPage = () => {
         ]
     };
 
-    // Chart 2: Growth Rate Bar Chart
     const growthRateChart = growthData ? {
         labels: growthData.map(entry => {
             const [year, month] = entry.date.split('-');
             return new Date(year, month - 1).toLocaleDateString('en-US', { month: 'short' });
-        }).slice(1), // Start from February
+        }).slice(1), 
         datasets: [{
             label: 'Monthly Growth %',
-            data: growthRates.slice(1), // Start from February
+            data: growthRates.slice(1), 
             backgroundColor: darkMode ? 'rgba(188, 212, 60, 0.3)' : 'rgba(122, 192, 75, 0.3)',
             borderWidth: 1,
             borderColor: darkMode ?'rgba(188, 212, 60, 0.8)' : 'rgba(122, 192, 75, 0.8)'
         }]
     } : null;
 
-    // Chart 3: Forecast Comparison Chart
+
     const forecastChart = growthData ? {
         labels: [
             ...growthData.map(entry => {

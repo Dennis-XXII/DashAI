@@ -14,14 +14,12 @@ const LoginPage = () => {
   const validateForm = () => {
     const newErrors = {};
 
-    // Username validation
     if (!username) {
       newErrors.username = 'Username is required';
     } else if (username !== 'admin') {
       newErrors.username = 'Invalid username';
     }
 
-    // Password validation
     if (!password) {
       newErrors.password = 'Password is required';
     } else if (password !== '123456') {
@@ -60,7 +58,7 @@ const LoginPage = () => {
           <div className="form-group">
             <label htmlFor="username">Username</label>
             <input
-              type="text" // Changed from email to text
+              type="text"
               id="username"
               value={username}
               onChange={(e) => setUsername(e.target.value)}
